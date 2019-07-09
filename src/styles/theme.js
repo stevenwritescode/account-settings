@@ -9,12 +9,66 @@ const palette = {
   secondary: blue,
 };
 
+const globalFont = {
+  fontFamily: '"Open Sans"',
+  lineHeight: "normal",
+};
+
+const typography = {
+  h4: {
+    ...globalFont,
+    fontSize: 20,
+    fontWeight: 600,
+    color: "#6a6a6a",
+  },
+  h6: {
+    ...globalFont,
+    fontSize: 14,
+    fontWeight: 600,
+    color: "#565656",
+  },
+  caption: { ...globalFont, color: "#939393" },
+};
+
 const overrides = {
   ...theme.overrides,
+  MuiButton: {
+    root: {
+      textTransform: "none",
+      fontWeight: 600,
+    },
+  },
+  MuiCheckbox: {
+    root: {
+      backgroundColor: "transparent",
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
+    },
+  },
   MuiDrawer: {
     paper: {
       backgroundColor: blue[700],
     },
+  },
+  MuiFormControlLabel: {
+    label: {
+      fontSize: 12,
+      color: "#939393",
+    },
+  },
+  MuiInputLabel: {
+    root: {
+      marginLeft: theme.spacing(2),
+      fontSize: 12,
+      fontWeight: 600,
+      color: "#AFAFAF",
+    },
+  },
+  MuiLink: {
+    root:{
+        color: palette.secondary[700]
+    }
   },
   MuiList: {
     padding: {
@@ -43,6 +97,16 @@ const overrides = {
       color: "#fff",
     },
   },
+  MuiPaper: {
+    elevation1: { boxShadow: "0px 1px 3px 0px rgba(0,0,0,0.02), 0px 1px 1px 0px rgba(0,0,0,0.02), 0px 2px 1px -1px rgba(0,0,0,0.02)" },
+  },
+  MuiOutlinedInput: {
+    input: {
+      fontSize: 12,
+      color: "#808080",
+      padding: theme.spacing(0.75),
+    },
+  },
   MuiToolbar: {
     root: {
       backgroundColor: "#fff",
@@ -51,4 +115,16 @@ const overrides = {
   },
 };
 
-export default createMuiTheme({ palette, overrides });
+const props = {
+  MuiAppBar: {
+    elevation: 1,
+  },
+  MuiTextField: {
+    variant: "outlined",
+  },
+  MuiCheckbox: {
+    disableRipple: true,
+  },
+};
+
+export default createMuiTheme({ palette, typography, overrides, props });

@@ -1,23 +1,62 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
+import SettingsPanel from "../components/SettingsPanel";
+import EmailField from "../components/form-inputs/Email.jsx";
+import CommissionCharges from "../components/form-inputs/CommissionCharges.jsx";
+import TrackingExpenses from "../components/form-inputs/TrackingExpenses.jsx";
+import AppsflyerUpload from "../components/AppsflyerUpload";
+import Moment from "moment";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+  },
+  divider: {
+    margin: `${theme.spacing(3)}px 0`,
+  },
+}));
 
 export default function AccountSettings() {
+  const [accountSettings, setAccountSettings] = React.useState({
+    appsflyerReports: {
+      lastUpdated: Moment()
+        .subtract("7,d")
+        .format("MMM DD, YYYY HH:MM A"),
+    },
+  });
+  const classes = useStyles();
   return (
     <div>
-      <Typography paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-        facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet
-        id donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh
-        cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue.
-        At augue eget arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-      </Typography>
-      <Typography paragraph>
-        Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-        tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-        risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam
-        aliquam sem et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis eleifend.
-        Commodo viverra maecenas accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-      </Typography>
+      <Grid container spacing={5}>
+        <Grid item xs={4}>
+          <Typography variant="h6">System</Typography>
+          <Typography variant="caption">Configure external fees and email that will be used as default address for notifications.</Typography>
+        </Grid>
+        <Grid item xs>
+          <SettingsPanel title={"General settings"}>
+            <EmailField />
+            <CommissionCharges />
+            <TrackingExpenses />
+          </SettingsPanel>
+        </Grid>
+      </Grid>
+
+      <Divider className={classes.divider} />
+
+      <Grid container spacing={5}>
+        <Grid item xs={4}>
+          <Typography variant="h6">Appsflyer reports</Typography>
+          <Typography variant="caption">Last updated {accountSettings.appsflyerReports.lastUpdated}</Typography>
+        </Grid>
+        <Grid item xs>
+          <AppsflyerUpload />
+        </Grid>
+      </Grid>
+
+      <Divider className={classes.divider} />
     </div>
   );
 }

@@ -6,7 +6,8 @@ import TopBar from "../components/TopBar.jsx";
 import AccountSettings from "./AccountSettings.jsx";
 
 function Home(props) {
-  console.log(props);
+  document.body.style.backgroundColor = "#eceef3";
+
   const path = props.location.pathname;
   const pageTitle = () => {
     switch (props.location.pathname) {
@@ -22,7 +23,6 @@ function Home(props) {
         return "";
     }
   };
-  console.log(props.location.pathname);
   return (
     <div>
       <TopBar pageTitle={pageTitle()} />

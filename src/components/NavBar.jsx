@@ -9,7 +9,6 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import OptionsIcon from "@material-ui/icons/Tune";
 import AccountIcon from "@material-ui/icons/AccountCircle";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import SearchIcon from "@material-ui/icons/Search";
 
 const drawerWidth = 64;
 
@@ -29,6 +28,18 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
+  navlink: {
+    textDecoration: "none",
+    "&.active li": {
+      backgroundColor: theme.palette.secondary[900],
+    },
+    "&:hover li": {
+      backgroundColor: theme.palette.secondary[900],
+    },
+    "&.active span": {
+      color: theme.palette.secondary[700],
+    },
+  },
 }));
 
 export default function NavBar(props) {
@@ -49,10 +60,11 @@ export default function NavBar(props) {
           paper: classes.drawerPaper,
         }}
       >
+        <div className={classes.toolbar} />
         <MenuList>
           {navLinks.map((link, index) => (
-            <NavLink to={link.route} key={index}>
-              <ListItem button>
+            <NavLink to={link.route} key={index} className={classes.navlink}>
+              <ListItem>
                 <ListItemIcon>{link.icon}</ListItemIcon>
               </ListItem>
             </NavLink>
