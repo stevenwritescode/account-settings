@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     flexGrow: 1,
+    margin: `${theme.spacing()}px 0`,
     padding: theme.spacing(2),
     color: "#949494",
   },
@@ -33,25 +34,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function AppsflyerUpload(props) {
+export default function ApiCertificateUpload(props) {
   const classes = useStyles();
   const { title, children } = props;
 
   const [uploading, setUploading] = React.useState(false);
   const [completed, setCompleted] = React.useState(0);
-  const [accountSettings, setAccountSettings] = React.useState({
-    appsflyerReports: {
-      lastUpdated: Moment()
-        .subtract(7, "days")
-        .format("MMM DD, YYYY HH:MM A"),
-    },
-  });
+  const [adAccounts, setAdAccounts] = React.useState([
+    { name: "Joshua Moody", dateAdded: "05-21-2017", enabled: true },
+    { name: "Bernard Rhodes", dateAdded: "06-10-2017", enabled: false },
+  ]);
 
   React.useEffect(() => {
     function progress() {
       setCompleted(oldCompleted => {
         if (oldCompleted === 100) {
           setUploading(false);
+          const newAdAccounts = [...adAccounts, { name: "Another Person", dateAdded: Moment().format("MM-DD-YYYY"), enabled: true }];
+          setAdAccounts(newAdAccounts);
           return 0;
         }
         const diff = Math.random() * 30;
@@ -63,12 +63,11 @@ export default function AppsflyerUpload(props) {
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [adAccounts]);
 
   function mockUpload() {
     setUploading(true);
     setCompleted(0);
-    setAccountSettings({ ...accountSettings, appsflyerReports: { lastUpdated: Moment().format("MMM DD, YYYY HH:MM A") } });
   }
   return (
     <Paper className={classes.paper}>
@@ -80,7 +79,7 @@ export default function AppsflyerUpload(props) {
           {uploading && (
             <div className={classes.root}>
               <Typography variant="caption" className={classes.text}>
-                Uploading report_file_Q32017.csv
+                Uploading api_certificates.zip
               </Typography>
               <div className={classes.grow} />
               <Typography variant="caption" className={classes.text}>
@@ -90,11 +89,11 @@ export default function AppsflyerUpload(props) {
           )}
           {!uploading && (
             <Typography className={classes.text}>
-              Drop .csv document here or{" "}
+              Drop archive with API Certificate here or{" "}
               <Link variant="body1" component="button" onClick={() => mockUpload()}>
                 choose file
               </Link>{" "}
-              to upload Appsflyer statistics
+              to add new account
             </Typography>
           )}
           {uploading && <LinearProgress color="secondary" variant="determinate" value={completed} className={classes.progressBar} />}

@@ -57,6 +57,11 @@ const overrides = {
       color: "#939393",
     },
   },
+  MuiIconButton: {
+    root: {
+      "&:hover": { backgroundColor: "transparent" },
+    },
+  },
   MuiInputLabel: {
     root: {
       marginLeft: theme.spacing(2),
@@ -66,9 +71,9 @@ const overrides = {
     },
   },
   MuiLink: {
-    root:{
-        color: palette.secondary[700]
-    }
+    root: {
+      color: palette.secondary[700],
+    },
   },
   MuiList: {
     padding: {

@@ -11,24 +11,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function EmailField() {
+export default function PhoneField() {
   const classes = useStyles();
   const accountSettings = React.useState();
   const [form, setForm] = React.useState({
-    email: accountSettings.email,
+    phone: accountSettings.phone,
   });
+
   const handleChange = name => event => {
     setForm({ ...form, [name]: event.target.value });
   };
-
   return (
     <div className={classes.root}>
       <Grid container alignItems="center">
         <Grid item xs={3}>
-          <InputLabel>Email</InputLabel>
+          <InputLabel>Phone</InputLabel>
         </Grid>
         <Grid item xs={9}>
-          <TextField className={classes.textField} value={form.email} onChange={handleChange("email")} variant="outlined" fullWidth />
+          <TextField className={classes.textField} value={form.phone} onChange={handleChange("phone")} variant="outlined" placeholder="Enter phone number" />
         </Grid>
       </Grid>
     </div>

@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
@@ -17,7 +18,12 @@ const useStyles = makeStyles(theme => ({
     color: "#949494",
     fontSize: 14,
     fontWeight: 600,
-    padding: `${theme.spacing()}px ${theme.spacing(2)}px`,
+    display: "inline",
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
+  },
+  link: {
+    fontSize: 14,
+    padding: `${theme.spacing(2)}px ${theme.spacing(3)}px`,
   },
   buttonSection: {
     display: "flex",
@@ -27,12 +33,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function SettingsPanel(props) {
   const classes = useStyles();
-  const { title, children } = props;
+  const { title, link, valid, children } = props;
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <Paper className={classes.grow}>
         <Grid container direction="column">
-          <Typography className={classes.titleSection}>{title}</Typography>
+          <Grid container direction="row">
+            <Typography className={classes.titleSection}>
+              {title}
+            </Typography>
+            <div className={classes.grow} />
+            {link && (
+              <Typography className={classes.link}>
+                <Link href={link.url}>
+                  {link.text}
+                </Link>
+              </Typography>
+            )}
+          </Grid>
           <Divider />
           {children}
           <Divider />
