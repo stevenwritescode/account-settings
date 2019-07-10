@@ -1,11 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
-import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import CreditCard from "../components/form-inputs/CreditCard";
 import Moment from "moment";
@@ -64,7 +62,7 @@ const useStyles = makeStyles(theme => ({
 export default function CreditCardPanel(props) {
   const classes = useStyles();
   const [panelState, setPanelState] = React.useState({ editing: false });
-  const [accountSettings, setAccountSettings] = React.useState({
+  const accountSettings = React.useState({
     paymentInfo: [
       {
         type: "MasterCard",

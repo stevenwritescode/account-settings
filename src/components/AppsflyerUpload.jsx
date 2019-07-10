@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function AppsflyerUpload(props) {
   const classes = useStyles();
-  const { title, children } = props;
 
   const [uploading, setUploading] = React.useState(false);
   const [completed, setCompleted] = React.useState(0);

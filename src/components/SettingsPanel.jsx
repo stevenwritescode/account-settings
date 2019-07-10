@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function SettingsPanel(props) {
   const classes = useStyles();
-  const { title, link, valid, children } = props;
+  const { title, link, children } = props;
   return (
     <form className={classes.root} noValidate autoComplete="off">
       <Paper className={classes.grow}>

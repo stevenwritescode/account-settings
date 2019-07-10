@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function AccountSettings() {
-  const [accountSettings, setAccountSettings] = React.useState({
+  const accountSettings = React.useState({
     name: "Steven Williams",
     email: "stevenwritescode@gmail.com",
     appsflyerReports: {
@@ -42,10 +42,6 @@ export default function AccountSettings() {
   });
   const form = React.useState();
   const classes = useStyles();
-
-  React.useEffect(() => {
-    console.log(accountSettings);
-  });
 
   return (
     <div>
