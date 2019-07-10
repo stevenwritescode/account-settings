@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
 export default function CreditCardPanel(props) {
   const classes = useStyles();
   const [panelState, setPanelState] = React.useState({ editing: false });
-  const accountSettings = React.useState({
+  const [accountSettings] = React.useState({
     paymentInfo: [
       {
         type: "MasterCard",
