@@ -19,7 +19,7 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build"
   },
-  "homepage": "https://stevenwritescode.github.io/account-settings",
+  "homepage": "https://stevenwritescode.github.io/account-settings/",
   "eslintConfig": {
     "extends": "react-app"
   },
